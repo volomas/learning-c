@@ -36,7 +36,13 @@ void append(LinkedList *list, int data) {
   list->size++;
 }
 
-void prepend(LinkedList *list, int data) {}
+void prepend(LinkedList *list, int data) {
+  Node *newRoot = (Node*)malloc(sizeof(Node));
+  newRoot->data = data;
+  newRoot->next = list->root;
+  list->root = newRoot;
+  list->size++;
+}
 
 // TODO what if linked list is empty?
 int first(LinkedList *list) { 
@@ -77,8 +83,8 @@ int main(int argc, char *argv[]) {
 
 
   //TODO test prepend
-  // prepend(list, 1);
-  // assert(size(list) == 4);
-  // assert(first(list) == 4);
+  prepend(list, 1);
+  assert(size(list) == 4);
+  assert(first(list) == 1);
   // assert(get(list, 1) == 9);
 }
